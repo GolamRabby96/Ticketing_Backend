@@ -16,7 +16,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors(
     {
-        origin: ['http://localhost:3000', 'http://localhost:5173'],
+        origin: ['http://localhost:3000', 'http://localhost:5173', 'https://ticketing-system-c6af2.web.app'],
         methods: ['GET', 'POST', 'PUT', 'DELETE'],
         credentials: true,
         allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Authorization']
