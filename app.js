@@ -29,8 +29,15 @@ const MONGOURL = process.env.MONGO_URL;
 
 
 // Connect to MongoDB
+const uri = `mongodb+srv://golamrabbynwu:Admin12345@ticketing.v1iqovw.mongodb.net/?retryWrites=true&w=majority&appName=Ticketing`;
+// const uri = `mongodb+srv://sixtynine:sixtynine@$sixtynine.msrxqeh.mongodb.net/?retryWrites=true&w=majority&appName=sixtynine`;
+// const uri = `mongodb+srv://Ticketing:Admin@12345@cluster0.v5qzigz.mongodb.net/?retryWrites=true&w=majority`;
 
-mongoose.connect(MONGOURL).then(() => console.log("Database connection established"))
+mongoose.connect(MONGOURL)
+    .then(() => console.log("Database connection established"))
+    .catch((err) => console.log(err));
+
+
 app.get('/', (req, res) => {
     res.send('hello world');
 });
@@ -40,15 +47,10 @@ app.get('/', (req, res) => {
 
 
 
+
 app.use(ticketRouter);
 app.use(userRouter);
 app.use(messageRouter);
-
-
-
-
-
-
 
 
 
