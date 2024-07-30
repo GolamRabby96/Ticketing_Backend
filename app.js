@@ -26,12 +26,9 @@ app.use(cors(
 const PORT = process.env.PORT || 7000;
 const MONGOURL = process.env.MONGO_URL;
 
-
+console.log(MONGOURL)
 
 // Connect to MongoDB
-const uri = `mongodb+srv://golamrabbynwu:Admin12345@ticketing.v1iqovw.mongodb.net/?retryWrites=true&w=majority&appName=Ticketing`;
-// const uri = `mongodb+srv://sixtynine:sixtynine@$sixtynine.msrxqeh.mongodb.net/?retryWrites=true&w=majority&appName=sixtynine`;
-// const uri = `mongodb+srv://Ticketing:Admin@12345@cluster0.v5qzigz.mongodb.net/?retryWrites=true&w=majority`;
 
 mongoose.connect(MONGOURL)
     .then(() => console.log("Database connection established"))

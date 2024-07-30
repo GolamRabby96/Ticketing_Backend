@@ -70,6 +70,30 @@ export const getTicketById = async (req, res) => {
         res.status(500).json({ message: err.message })
     }
 }
+
+export const getUpdateById = async (req, res) => {
+    const id = { _id: req.params.id };
+    console.log('77', req.body)
+    try {
+        const getTicket = await ticket.find({ _id: req.params.id });
+        const updateTicket = getTicket[0].watched.find((c) => c == req.body);
+        if (updateTicket == null || updateTicket === undefined || updateTicket == '') {
+            console.log('92', 'No such item in array');
+            let newTicket = getTicket[0].watched.push(req.body[0]);
+            console.log('8d5', getTicket[0]);
+            const propertyUpdate = await ticket.findOneAndUpdate(id, getTicket[0], {
+                new: true,
+            });
+            res.status(200).json({
+                message: "Data updated",
+            })
+
+        }
+    } catch (err) {
+        res.status(500).json({ message: err.message })
+    }
+}
+
 export const getTicketByZone = async (req, res) => {
     try {
         const getTicket = await ticket.find({ ticket_zone: req.params.name });
@@ -88,7 +112,6 @@ export const searchTicket = async (req, res) => {
     try {
         const collect = req.params.name;
         const regex = new RegExp(collect, "i");
-        const begex = new RegExp(collect, "i");
 
         const findTicket = await ticket.find({ ticket_name: regex, ticket_status: 'open' });
         res.status(200).json({

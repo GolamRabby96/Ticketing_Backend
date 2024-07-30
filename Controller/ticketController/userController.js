@@ -36,9 +36,42 @@ export const getAllUser = async (req, res) => {
 export const getUser = async (req, res) => {
     try {
         const getUser = await User.find({ user_id: req.params.id })
-        if (!getUser) return res.status(404).json({ message: 'User not found' })
-        res.status(200).json({ data: getUser })
+        if (!getUser) return res.status(404).json({
+            UserFlag: false,
+            message: 'Login Denided'
+        })
+        res.status(200).json({
+            data: getUser,
+            UserFlag: true,
+            message: 'Login Successful'
+
+        })
     } catch (err) {
-        res.status(500).json({ message: err.message })
+        res.status(500).json({
+            UserFlag: true,
+            message: 'Login Failed'
+        })
     }
 }
+// export const checkUser = async (req, res) => {
+//     const { user_id, user_password } = req.body;
+//     console.log(req.body);
+//     try {
+//         let ui = user_id;
+//         const getUser = await User.find({ user_id: req.params.id });
+//         if (user_id == getUser.user_id) {
+//             if (user_password == getUser.user_password) {
+//                 res.status(200).json({ userFlag: true, message: 'Login Successful' })
+//             } else {
+//                 res.status(200).json({ userFlag: false, message: 'User Id or Password Incorrect' })
+//             }
+//         } else {
+//             res.status(404).json({ userFlag: false, message: 'User not found' })
+//         }
+
+//         if (!getUser) return res.status(404).json({ userFlag: false, message: 'User not found' })
+//         res.status(200).json({ data: getUser })
+//     } catch (err) {
+//         res.status(500).json({ message: err.message })
+//     }
+// }
