@@ -1,11 +1,12 @@
 import express from 'express';
-import { createTicket, getAllClosedTicket, getAllTicket, getTicketById, getTicketByZone, getUpdateById, searchTicket } from '../Controller/ticketController/ticketController.js';
+import { createTicket, getAllClosedTicket, getAllTicket, getClosedTicketById, getTicketById, getTicketByZone, getUpdateById, searchTicket } from '../Controller/ticketController/ticketController.js';
 const router = express.Router();
 
 router.post('/addTicket', createTicket);
 router.post('/ticketStatus/:id', getUpdateById);
 router.get('/allTickets', getAllTicket);
 router.get('/singleTicket/:id', getTicketById);
+router.get('/ticketClosed/:id', getClosedTicketById);
 router.get('/ticket/:name', searchTicket);
 router.get('/ticketZone/:name', getTicketByZone);
 router.get('/closedTicket', getAllClosedTicket);
