@@ -89,14 +89,11 @@ export const getClosedTicketById = async (req, res) => {
 
 export const getUpdateById = async (req, res) => {
     const id = { _id: req.params.id };
-    console.log('77', req.body)
     try {
         const getTicket = await ticket.find({ _id: req.params.id });
         const updateTicket = getTicket[0].watched.find((c) => c == req.body);
         if (updateTicket == null || updateTicket === undefined || updateTicket == '') {
-            console.log('92', 'No such item in array');
             let newTicket = getTicket[0].watched.push(req.body[0]);
-            console.log('8d5', getTicket[0]);
             const propertyUpdate = await ticket.findOneAndUpdate(id, getTicket[0], {
                 new: true,
             });
