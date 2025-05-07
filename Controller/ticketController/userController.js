@@ -65,7 +65,7 @@ export const checkUser = async (req, res) => {
         if (!getUser) return res.status(404).json({ userFlag: false, message: 'User not found' })
         if (user_id == getUser[0].user_id) {
             if (user_password == getUser[0].user_password) {
-                res.status(200).json({ userFlag: true, message: 'Login Successful' })
+                res.status(200).json({ userData: getUser[0], userFlag: true, message: 'Login Successful' })
             } else {
                 res.status(200).json({ userFlag: false, message: 'User Id or Password Incorrect' })
             }
@@ -73,6 +73,6 @@ export const checkUser = async (req, res) => {
             res.status(404).json({ userFlag: false, message: 'User not found' })
         }
     } catch (err) {
-        res.status(500).json({ message: err.message })
+        res.status(500).json({ message: 'User not found' })
     }
 }
