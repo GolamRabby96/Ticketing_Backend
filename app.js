@@ -39,6 +39,9 @@ app.get('/', (req, res) => {
     res.send('hello world my name is golam rabby');
 });
 
+app.get("/health", (req, res) => {
+    res.status(200).send("ok");
+});
 
 
 
